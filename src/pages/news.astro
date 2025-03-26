@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MainNav from '../components/MainNav.astro';
+
+// Sample news data - in a real application, this might come from a CMS or API
+const newsItems = [
+  {
+    id: 1,
+    title: "New Exhibition Opening",
+    date: "June 15, 2023",
+    summary: "Oxoy Studio is proud to announce the opening of a new digital exhibition featuring works from emerging artists.",
+    content: "Join us for the virtual opening of our latest digital exhibition, showcasing innovative works from emerging artists around the world. The exhibition explores themes of digital identity and virtual spaces.",
+    image: "/images/news-exhibition.jpg"
+  },
+  {
+    id: 2,
+    title: "Website Redesign for Black Archives Sweden",
+    date: "May 3, 2023",
+    summary: "We've completed a comprehensive redesign of the Black Archives Sweden website, improving accessibility and user experience.",
+    content: "After months of collaboration with the Black Archives Sweden team, we're excited to launch their redesigned website. The new site features improved navigation, responsive design, and enhanced accessibility features.",
+    image: "/images/news-black-archives.jpg"
+  },
+  {
+    id: 3,
+    title: "Virtual Rehearsal Space Updates",
+    date: "April 12, 2023",
+    summary: "Major updates to the Virtual Rehearsal Space platform include new collaboration tools and improved audio quality.",
+    content: "We've released a significant update to the Virtual Rehearsal Space platform, introducing new collaboration tools, improved audio quality, and a more intuitive interface. These enhancements make remote rehearsals even more effective for performing artists.",
+    image: "/images/news-vrs.jpg"
+  },
+  {
+    id: 4,
+    title: "Copenhagen Design Week Participation",
+    date: "March 28, 2023",
+    summary: "Oxoy Studio will be participating in Copenhagen Design Week with a presentation on digital design for cultural institutions.",
+    content: "We're excited to announce our participation in Copenhagen Design Week 2023. Our team will be presenting on the topic of 'Digital Design for Cultural Institutions in the Post-Pandemic Era.' Join us for insights on creating engaging digital experiences for museums, archives, and cultural organizations.",
+    image: "/images/news-design-week.jpg"
+  }
+];
+---
+
+<Layout title="News | Oxoy Studio">
+  <div class="container">
+    <MainNav />
+    
+    <div class="news-header">
+      <h1>News</h1>
+      <p>Latest updates from Oxoy Studio</p>
+    </div>
+    
+    <div class="news-grid">
+      {newsItems.map(item => (
+        <article class="news-item">
+          <div class="news-image-container">
+            {item.image && (
+              <img 
+                src={item.image} 
+                alt={`Image for ${item.title}`} 
+                class="news-image"
+                onError={(e) => e.currentTarget.style.display = 'none'}
+              />
+            )}
+          </div>
+          <div class="news-content">
+            <p class="news-date">{item.date}</p>
+            <h2 class="news-title">{item.title}</h2>
+            <p class="news-summary">{item.summary}</p>
+            <div class="news-full-content">
+              <p>{item.content}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Scoped styles for the news page */
+  .news-header {
+    margin: 48px 0 32px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 16px;
+  }
+  
+  .news-header h1 {
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+  
+  .news-header p {
+    color: #666;
+  }
+  
+  .news-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+  
+  .news-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 32px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 48px;
+  }
+  
+  .news-image-container {
+    width: 100%;
+  }
+  
+  .news-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #f1f1f1;
+  }
+  
+  .news-date {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
+  }
+  
+  .news-title {
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 16px;
+  }
+  
+  .news-summary {
+    font-size: 14px;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  
+  .news-full-content {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #333;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 767px) {
+    .news-item {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    
+    .news-image-container {
+      margin-bottom: 16px;
+    }
+  }
+</style>
+
+<script>
+  // Optional: Add JavaScript for interactive features
+  // For example, you could add functionality to expand/collapse news items
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    // Example: Add click handlers for news items
+    const newsItems = document.querySelectorAll('.news-item');
+    
+    newsItems.forEach(item => {
+      const title = item.querySelector('.news-title');
+      const fullContent = item.querySelector('.news-full-content');
+      
+      // Initially hide the full content
+      if (fullContent) {
+        fullContent.style.display = 'none';
+      }
+      
+      // Toggle content visibility on title click
+      if (title && fullContent) {
+        title.addEventListener('click', () => {
+          fullContent.style.display = 
+            fullContent.style.display === 'none' ? 'block' : 'none';
+        });
+        
+        // Add cursor pointer to indicate clickable
+        title.style.cursor = 'pointer';
+      }
+    });
+  });
+</script> 

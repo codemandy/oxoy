@@ -1,0 +1,188 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MainNav from '../components/MainNav.astro';
+---
+
+<Layout title="Contact | Oxoy Studio">
+  <div class="container">
+    <MainNav />
+    
+    <div class="contact-header">
+      <h1>Contact Us</h1>
+      <p>Get in touch with Oxoy Studio</p>
+    </div>
+    
+    <div class="contact-content">
+      <div class="contact-info">
+        <div class="info-section">
+          <h2>Email</h2>
+          <a href="mailto:hello@oxoystudio.com">hello@oxoystudio.com</a>
+        </div>
+        
+        <div class="info-section">
+          <h2>Location</h2>
+          <p>Copenhagen, Denmark</p>
+        </div>
+        
+        <div class="info-section">
+          <h2>Social</h2>
+          <div class="social-links contact-social">
+            <a href="https://instagram.com/oxoystudio" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://twitter.com/oxoystudio" target="_blank" rel="noopener noreferrer">Twitter</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-form">
+        <h2>Send us a message</h2>
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-button">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Scoped styles for the contact page */
+  .contact-header {
+    margin: 48px 0 32px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 16px;
+  }
+  
+  .contact-header h1 {
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+  
+  .contact-header p {
+    color: #666;
+  }
+  
+  .contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  
+  .info-section {
+    margin-bottom: 32px;
+  }
+  
+  .info-section h2 {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+  
+  .contact-social {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .contact-social a {
+    text-decoration: underline;
+  }
+  
+  .contact-social a:hover {
+    opacity: 0.7;
+  }
+  
+  /* Form styles */
+  .contact-form h2 {
+    font-size: 16px;
+    font-weight: normal;
+    margin-bottom: 24px;
+  }
+  
+  .form-group {
+    margin-bottom: 24px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #eee;
+    font-family: inherit;
+    font-size: 14px;
+    background-color: #fafafa;
+    transition: border-color 0.2s ease;
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #000;
+    background-color: #fff;
+  }
+  
+  .submit-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #333;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 767px) {
+    .contact-content {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+    
+    .contact-info {
+      order: 2;
+    }
+    
+    .contact-form {
+      order: 1;
+    }
+  }
+</style>
+
+<script>
+  // Client-side form handling
+  document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(e.target as HTMLFormElement);
+    const formValues = Object.fromEntries(formData.entries());
+    
+    // Here you would typically send the data to your backend
+    console.log('Form submitted:', formValues);
+    
+    // Show success message (in a real app, do this after successful API response)
+    alert('Thank you for your message! We will get back to you soon.');
+    (e.target as HTMLFormElement).reset();
+  });
+</script> 
