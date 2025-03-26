@@ -1,10 +1,11 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://your-domain.com', // Replace with your actual domain
-  output: 'static',
+  output: 'server',
   build: {
     assets: 'assets'
   },
@@ -14,5 +15,6 @@ export default defineConfig({
     },
     // Ensure public directory assets are properly handled
     publicDir: 'public',
-  }
+  },
+  adapter: netlify(),
 });
