@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MainNav from '../components/MainNav.astro';
+---
+
+<Layout title="Scaling.day | Oxoy Studio">
+  <div class="container">
+    <MainNav />
+    
+    <div class="project-header">
+      <h1>Scaling.day</h1>
+      <p>Website, 2024</p>
+    </div>
+    
+    <div class="project-content">
+      <div class="project-images">
+        <img src="/images/placeholder.jpg" alt="Scaling.day website" class="project-image" 
+             onError={(e) => e.currentTarget.style.display = 'none'} />
+        <p class="image-caption">Project in development</p>
+      </div>
+      
+      <div class="project-description">
+        <p>Scaling.day is a website project currently in development. Check back soon for more details.</p>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .project-header {
+    margin: 48px 0 32px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 16px;
+  }
+  
+  .project-header h1 {
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+  
+  .project-header p {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .project-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 48px;
+    margin-bottom: 64px;
+  }
+  
+  .project-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #f1f1f1;
+    margin-bottom: 16px;
+  }
+  
+  .image-caption {
+    font-size: 13px;
+    color: #666;
+    font-style: italic;
+  }
+  
+  .project-description {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 767px) {
+    .project-content {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style> 
