@@ -6,12 +6,12 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-family: 'Eurostile', sans-serif;
+  font-weight: 100;
+  font-size: 10px;
   line-height: 1.5;
   letter-spacing: -0.01em;
   color: #000;
-
 }
 
 a {
@@ -20,14 +20,18 @@ a {
 }
 
 .container {
-  max-width: 1400px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 0 16px;
   min-height: 100vh;
+  padding-bottom: 180px; /* Adds space at the bottom of the page */
+
 }
 
 /* Main Navigation */
 .main-nav {
+  font-size: 11px;
+  font-weight: 700;
   border-bottom: 1px solid #eee;
   display: flex;
   align-items: center;
@@ -44,7 +48,8 @@ a {
 
 .nav-links a {
   padding: 24px 16px;
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 700;
   border-left: 1px solid #eee;
   transition: background-color 0.2s ease;
 }
@@ -88,7 +93,8 @@ a {
 
 .secondary-nav a {
   padding: 8px 16px;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 100;
   border-left: 1px solid #eee;
   display: flex;
   flex-direction: column;
@@ -148,20 +154,20 @@ a {
 }
 
 .work-title {
-  font-size: 13px;
-  font-weight: normal;
+  font-size: 11px;
+  font-weight: 700;
   margin-bottom: 2px;
 }
 
 .work-type {
-  font-size: 13px;
-  font-weight: normal;
+  font-size: 11px;
+  font-weight: 100;
   margin-bottom: 16px;
 }
 
 .work-details {
-  font-size: 13px;
-  font-weight: normal;
+  font-size: 11px;
+  font-weight: 100;
   margin-bottom: 2px;
 }
 
@@ -294,4 +300,13 @@ a {
 
 .lightbox-close:hover {
   color: #ccc;
+}
+
+/* Font declaration */
+@font-face {
+  font-family: 'Eurostile';
+  src: url('/fonts/eurostile/eurostile.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 } 
