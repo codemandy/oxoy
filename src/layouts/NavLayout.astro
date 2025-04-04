@@ -1,0 +1,31 @@
+---
+import MainNav from '../components/MainNav.astro';
+import SecondaryNav from '../components/SecondaryNav.astro';
+---
+
+<div class="nav-container">
+  <div class="main-nav-wrapper">
+    <MainNav />
+  </div>
+  <div class="secondary-nav-wrapper">
+    <SecondaryNav />
+  </div>
+</div>
+
+<style>
+  .nav-container {
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto auto;
+  }
+  
+  .main-nav-wrapper {
+    width: 100%;
+    grid-row: 1;
+  }
+  
+  .secondary-nav-wrapper {
+    width: 100%;
+    grid-row: 2;
+  }
+</style> 

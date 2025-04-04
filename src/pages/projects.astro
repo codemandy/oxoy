@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import MainNav from '../components/MainNav.astro';
+import SecondaryNav from '../components/SecondaryNav.astro';
+---
+
+<Layout title="Projects | Oxoy Studio">
+  <div class="container">
+    <MainNav />
+    <SecondaryNav />
+    
+    <div class="projects-header">
+      <h1>Projects</h1>
+      <p>Our work and collaborations</p>
+    </div>
+    
+    <div class="projects-content">
+      <!-- Projects content goes here -->
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    margin-left: 163px;
+  }
+  
+  .projects-header {
+    margin: 48px 0 32px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 16px;
+  }
+  
+  .projects-header h1 {
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+  
+  .projects-header p {
+    color: #666;
+  }
+</style> 

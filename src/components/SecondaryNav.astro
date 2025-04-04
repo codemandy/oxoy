@@ -3,24 +3,76 @@
 ---
 
 <div class="secondary-nav-container">
-  <nav class="secondary-nav">
-    <a href="/scaling-day">
-      <span>Scaling.day</span>
-    </a>
-    <a href="/adriennes">
-      <span>Adriennes.site</span>
-    </a>
-    <a href="/emmancipattsionsfrugten">
-      <span>Emancipa(t/ss)ionsfrugten.org</span>
-    </a>
-    <a href="/bombinabombast">
-      <span>Bombinabombast.com</span>
-    </a>
-    <a href="/toraschultz">
-      <span>Toraschultz.com</span>
-    </a>
-    <a href="/virtual-rehearsal">
-      <span>Virtual Rehearsal Space</span>
-    </a>
-  </nav>
-</div> 
+  <div class="secondary-nav-grid">
+    <!-- Empty first column to align with the logo -->
+    <div class="empty-space"></div>
+    
+    <!-- Empty second column to align with news -->
+    <div class="empty-space"></div>
+    
+    <!-- Start secondary nav items at the same grid position as "works" in main nav -->
+    <nav class="secondary-nav">
+      <a href="/scaling-day">
+        <span>Scaling.day</span>
+      </a>
+      <a href="/adriennes">
+        <span>Adriennes.site</span>
+      </a>
+      <a href="/emmancipattsionsfrugten">
+        <span>Emancipa(t/ss)ionsfrugten.org</span>
+      </a>
+      <a href="/bombinabombast">
+        <span>Bombinabombast.com</span>
+      </a>
+      <a href="/toraschultz">
+        <span>Toraschultz.com</span>
+      </a>
+      <a href="/virtual-rehearsal">
+        <span>Virtual Rehearsal Space</span>
+      </a>
+    </nav>
+  </div>
+</div>
+
+<style>
+  .secondary-nav-container {
+    width: 100%;
+  }
+  
+  .secondary-nav-grid {
+    display: grid;
+    grid-template-columns: 1fr repeat(3, auto) 1fr;
+    gap: 2rem;
+    padding: 0 2rem;
+  }
+  
+  .secondary-nav {
+    grid-column: 3;
+    display: flex;
+    overflow-x: auto;
+  }
+  
+  .secondary-nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 11px;
+    padding-bottom: 8px;
+    margin-right: px;
+    display: inline-block;
+    position: relative;
+  }
+  
+  .secondary-nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+  }
+  
+  .secondary-nav a:hover {
+    color: #000;
+  }
+</style> 
