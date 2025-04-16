@@ -4,12 +4,6 @@
 
 <div class="secondary-nav-container">
   <div class="secondary-nav-grid">
-    <!-- Empty first column to align with the logo -->
-    <div class="empty-space"></div>
-    
-    <!-- Empty second column to align with news -->
-    <div class="empty-space"></div>
-    
     <!-- Start secondary nav items at the same grid position as "works" in main nav -->
     <nav class="secondary-nav">
       <a href="/scaling-day">
@@ -41,15 +35,20 @@
   
   .secondary-nav-grid {
     display: grid;
+    /* Match the exact same grid template as MainNav */
     grid-template-columns: 1fr repeat(3, auto) 1fr;
-    gap: 2rem;
     padding: 0 2rem;
   }
   
+  /* Ensure perfect alignment with the works link */
   .secondary-nav {
-    grid-column: 3;
+    grid-column: 3; /* Same column as works-link */
     display: flex;
     overflow-x: auto;
+    padding: 0; /* Remove ALL padding */
+    margin: 0; /* Remove ALL margin */
+    justify-content: space-between; /* Distribute items evenly */
+    width: 100%; /* Ensure it takes full width of the grid column */
   }
   
   .secondary-nav a {
@@ -57,9 +56,11 @@
     color: #333;
     font-size: 11px;
     padding-bottom: 8px;
-    margin-right: px;
     display: inline-block;
     position: relative;
+    white-space: nowrap;
+    text-align: center; /* Center text within each link */
+    flex: 1; /* Make each link take equal space */
   }
   
   .secondary-nav a.active::after {
@@ -74,5 +75,11 @@
   
   .secondary-nav a:hover {
     color: #000;
+  }
+  
+  /* Hide horizontal scrollbar but keep functionality */
+  .secondary-nav::-webkit-scrollbar {
+    height: 0;
+    width: 0;
   }
 </style> 

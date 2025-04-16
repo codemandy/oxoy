@@ -20,16 +20,16 @@ a {
 }
 
 .container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 16px;
-  min-height: 100vh;
-  padding-bottom: 180px; /* Adds space at the bottom of the page */
-
+  margin-left: 0;
+  max-width: 1200px;
+  padding: 0 2rem;
+  width: 100%;
 }
 
 /* Main Navigation */
 .main-nav {
+  max-width: 1200px;
+  margin: 0 auto;
   font-size: 11px;
   font-weight: 700;
   border-bottom: 1px solid #eee;
@@ -83,7 +83,7 @@ a {
 /* Secondary Navigation */
 .secondary-nav-container {
   overflow-x: auto;
-  margin-left: 163px;
+  margin-left: 120px;
 }
 
 .secondary-nav {
@@ -115,7 +115,7 @@ a {
 /* Work Content */
 .works {
   margin-top: 48px;
-  margin-left: 285px;
+  margin-left: 330px;  
   display: flex;
   flex-direction: column;
   gap: 96px;
@@ -225,6 +225,10 @@ a {
   
   .work-image-container {
     width: 100%;
+  }
+  
+  .container {
+    margin-left: 163px; /* Adjust based on your needs */
   }
 }
 

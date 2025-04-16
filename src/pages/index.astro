@@ -8,14 +8,12 @@ import SecondaryNav from '../components/SecondaryNav.astro';
 ---
 
 <Layout title="Oxoy Studio">
+	<!-- Navigation outside container -->
+	<MainNav />
+	<SecondaryNav />
+	
+	<!-- Content inside container -->
 	<div class="container">
-		<!-- Main Navigation -->
-		<MainNav />
-
-		<!-- Secondary Navigation -->
-		<SecondaryNav />
-
-		<!-- Exhibition Content -->
 		<div class="works">
 			<!-- Scaling.day -->
 			<div class="work">
@@ -131,7 +129,7 @@ import SecondaryNav from '../components/SecondaryNav.astro';
 			</div>
 		</div>
 	</div>
-
+	
 	<!-- Lightbox container -->
 	<div class="lightbox">
 		<span class="lightbox-close">&times;</span>
