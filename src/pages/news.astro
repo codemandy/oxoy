@@ -39,8 +39,7 @@ const newsItems = [
 ];
 ---
 
-<Layout title="News - oxoy studio">
-  <!-- Navigation outside container -->
+<Layout title="News | Oxoy Studio">
   <MainNav />
   
   <!-- Content inside container -->
@@ -74,21 +73,31 @@ const newsItems = [
 </Layout>
 
 <style>
-
-  .news-item {
-    margin: 48px 20 0px 10px;
-    padding-top: 40px;
+  /* Scoped styles for the news page */
+  .news-header {
+    margin: 48px 0 32px 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 16px;
   }
   
- 
+  .news-header h1 {
+    font-size: 12px;
+    font-weight: 100;
+    margin-bottom: 8px;
+  }
   
- 
+  .news-header h2 {
+    font-size: 11px;
+    font-weight: 100;
+    margin-bottom: 8px;
+  }
   
   .news-grid {
     display: flex;
     flex-direction: column;
     gap: 48px;
     margin-bottom: 64px;
+    margin-left: 10px;
   }
   
   .news-item {
@@ -96,7 +105,8 @@ const newsItems = [
     grid-template-columns: 1fr 2fr;
     gap: 32px;
     border-bottom: 1px solid #eee;
-    margin: ;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
   
   .news-image-container {
@@ -111,38 +121,33 @@ const newsItems = [
   }
   
   .news-date {
-    font-size: 13px;
+    font-size: 11px;
     color: #666;
     margin-bottom: 8px;
   }
   
   .news-title {
-    font-size: 18px;
-    font-weight: normal;
+    font-size: 12px;
+    font-weight: 100;
     margin-bottom: 16px;
   }
   
   .news-summary {
-    font-size: 14px;
+    font-size: 11px;
+    font-weight: 100;
     margin-bottom: 16px;
-    line-height: 1.6;
+    line-height: 1.5;
   }
   
   .news-full-content {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 11px;
+    font-weight: 100;
+    line-height: 1.5;
     color: #333;
   }
   
   /* Responsive styles */
   @media (max-width: 767px) {
-    /* Remove these container styles */
-    /* .container {
-      margin-left: 0;
-      padding: 0 16px;
-      width: 100%;
-    } */
-
     .news-item {
       grid-template-columns: 1fr;
       gap: 16px;
