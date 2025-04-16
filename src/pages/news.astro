@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import MainNav from '../components/MainNav.astro';
 
-// Sample news data - in a real application, this might come from a CMS or API
+// Sample news items data
 const newsItems = [
   {
     id: 1,
@@ -36,28 +36,17 @@ const newsItems = [
     content: "WEBSITE, CMS, DESIGN, DEVELOPMENT",
     image: "/images/vrs_02.png"
   },
-  // {
-  //   id: 5,
-  //   title: "Copenhagen Design Week Participation",
-  //   date: "March 28, 2023",
-  //   summary: "Oxoy Studio will be participating in Copenhagen Design Week with a presentation on digital design for cultural institutions.",
-  //   content: "We're excited to announce our participation in Copenhagen Design Week 2023. Our team will be presenting on the topic of 'Digital Design for Cultural Institutions in the Post-Pandemic Era.' Join us for insights on creating engaging digital experiences for museums, archives, and cultural organizations.",
-  //   image: "/images/news-design-week.jpg"
-  // }
 ];
 ---
 
 <Layout title="News | Oxoy Studio">
+  <MainNav />
+  
+  <!-- Content inside container -->
   <div class="container">
-    <MainNav />
-    
-    <div class="news-header">
-      <h1>News</h1>
-      <p>Latest updates from Oxoy Studio</p>
-    </div>
     
     <div class="news-grid">
-      {newsItems.map(item => (
+      {newsItems.map((item) => (
         <article class="news-item">
           <div class="news-image-container">
             {item.image && (
@@ -65,7 +54,7 @@ const newsItems = [
                 src={item.image} 
                 alt={`Image for ${item.title}`} 
                 class="news-image"
-                onError={(e) => e.currentTarget.style.display = 'none'}
+                onerror="this.style.display='none'"
               />
             )}
           </div>
@@ -86,19 +75,21 @@ const newsItems = [
 <style>
   /* Scoped styles for the news page */
   .news-header {
-    margin: 48px 0 32px;
+    margin: 48px 0 32px 10px;
     border-bottom: 1px solid #eee;
     padding-bottom: 16px;
   }
   
   .news-header h1 {
-    font-size: 24px;
-    font-weight: normal;
+    font-size: 12px;
+    font-weight: 100;
     margin-bottom: 8px;
   }
   
-  .news-header p {
-    color: #666;
+  .news-header h2 {
+    font-size: 11px;
+    font-weight: 100;
+    margin-bottom: 8px;
   }
   
   .news-grid {
@@ -106,6 +97,7 @@ const newsItems = [
     flex-direction: column;
     gap: 48px;
     margin-bottom: 64px;
+    margin-left: 10px;
   }
   
   .news-item {
@@ -113,7 +105,8 @@ const newsItems = [
     grid-template-columns: 1fr 2fr;
     gap: 32px;
     border-bottom: 1px solid #eee;
-    padding-bottom: 48px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
   
   .news-image-container {
@@ -128,26 +121,28 @@ const newsItems = [
   }
   
   .news-date {
-    font-size: 13px;
+    font-size: 11px;
     color: #666;
     margin-bottom: 8px;
   }
   
   .news-title {
-    font-size: 18px;
-    font-weight: normal;
+    font-size: 12px;
+    font-weight: 100;
     margin-bottom: 16px;
   }
   
   .news-summary {
-    font-size: 14px;
+    font-size: 11px;
+    font-weight: 100;
     margin-bottom: 16px;
-    line-height: 1.6;
+    line-height: 1.5;
   }
   
   .news-full-content {
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 11px;
+    font-weight: 100;
+    line-height: 1.5;
     color: #333;
   }
   
@@ -166,8 +161,6 @@ const newsItems = [
 
 <script>
   // Optional: Add JavaScript for interactive features
-  // For example, you could add functionality to expand/collapse news items
-  
   document.addEventListener('DOMContentLoaded', () => {
     // Example: Add click handlers for news items
     const newsItems = document.querySelectorAll('.news-item');
@@ -177,19 +170,21 @@ const newsItems = [
       const fullContent = item.querySelector('.news-full-content');
       
       // Initially hide the full content
-      if (fullContent) {
+      if (fullContent instanceof HTMLElement) {
         fullContent.style.display = 'none';
       }
       
       // Toggle content visibility on title click
-      if (title && fullContent) {
+      if (title && fullContent instanceof HTMLElement) {
         title.addEventListener('click', () => {
           fullContent.style.display = 
             fullContent.style.display === 'none' ? 'block' : 'none';
         });
         
         // Add cursor pointer to indicate clickable
-        title.style.cursor = 'pointer';
+        if (title instanceof HTMLElement) {
+          title.style.cursor = 'pointer';
+        }
       }
     });
   });
