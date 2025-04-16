@@ -31,37 +31,54 @@
 <style>
   .secondary-nav-container {
     width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
   
   .secondary-nav-grid {
     display: grid;
-    /* Match the exact same grid template as MainNav */
     grid-template-columns: 1fr repeat(3, auto) 1fr;
     padding: 0 2rem;
   }
   
-  /* Ensure perfect alignment with the works link */
   .secondary-nav {
-    grid-column: 3; /* Same column as works-link */
+    grid-column: 3;
     display: flex;
     overflow-x: auto;
-    padding: 0; /* Remove ALL padding */
-    margin: 0; /* Remove ALL margin */
-    justify-content: space-between; /* Distribute items evenly */
-    width: 100%; /* Ensure it takes full width of the grid column */
+    padding: 0 2rem; /* Match MainNav padding */
+    margin: 0;
+    justify-content: space-between;
+    width: 100%;
+    scroll-behavior: smooth; /* Smooth scrolling */
+    -ms-overflow-style: none;  /* Hide scrollbar in IE and Edge */
+    scrollbar-width: none;  /* Hide scrollbar in Firefox */
+  }
+  
+  /* Hide scrollbar in Webkit browsers */
+  .secondary-nav::-webkit-scrollbar {
+    display: none;
   }
   
   .secondary-nav a {
     text-decoration: none;
     color: #333;
     font-size: 11px;
-    padding-bottom: 8px;
+    padding: 10px 8px; /* Increased padding for touch targets */
     display: inline-block;
     position: relative;
     white-space: nowrap;
-    text-align: center; /* Center text within each link */
-    flex: 1; /* Make each link take equal space */
+    text-align: center;
+    flex: 0 0 auto; /* Don't force equal width on mobile */
+    border-bottom: 1px solid #eee;
+
   }
+
+  .secondary-nav a:last-child {
+  border-right: 1px solid #eee;
+}
+
   
   .secondary-nav a.active::after {
     content: '';
@@ -77,9 +94,40 @@
     color: #000;
   }
   
-  /* Hide horizontal scrollbar but keep functionality */
-  .secondary-nav::-webkit-scrollbar {
-    height: 0;
-    width: 0;
+  /* Mobile-specific styles */
+  @media (max-width: 767px) {
+    .secondary-nav-container {
+      margin-left: 0;
+      width: 100%;
+      overflow-x: visible; /* Allow content to wrap */
+    }
+    
+    .secondary-nav-grid {
+      display: block; /* Simplify layout on mobile */
+      padding: 0;
+    }
+    
+    .secondary-nav {
+      width: 100%;
+      padding: 0.5rem 2rem; /* Keep consistent with desktop and MainNav */
+      justify-content: flex-start;
+      flex-wrap: wrap; /* Enable wrapping */
+      border-bottom: 1px solid #eee;
+      overflow-x: visible; /* Disable horizontal scrolling */
+      gap: 4px; /* Add gap between wrapped items */
+    }
+    
+    .secondary-nav a {
+      padding: 8px 12px; /* Adjusted padding for wrapped layout */
+      margin-right: 4px;
+      margin-bottom: 0px; /* Add space between rows */
+      flex: 0 0 auto; /* Allow natural width */
+      border: 1px solid #eee; 
+    }
+    
+    /* Remove the scroll indicator since we're wrapping now */
+    .secondary-nav::after {
+      display: none;
+    }
   }
 </style> 

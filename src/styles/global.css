@@ -59,9 +59,7 @@ a {
   background-color: rgba(0, 0, 0, 0.03);
 }
 
-.nav-links a.shop {
-  color: #f00;
-}
+
 
 .social-links {
   display: flex;
@@ -88,7 +86,6 @@ a {
 
 .secondary-nav {
   display: flex;
-  border-bottom: 1px solid #eee;
   white-space: nowrap;
 }
 
