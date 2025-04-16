@@ -7,7 +7,7 @@ import SecondaryNav from '../components/SecondaryNav.astro';
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout title="Oxoy Studio">
+<Layout title="oxoy studio">
 	<!-- Navigation outside container -->
 	<MainNav />
 	<SecondaryNav />
@@ -136,3 +136,15 @@ import SecondaryNav from '../components/SecondaryNav.astro';
 		<img class="lightbox-content" src="" alt="">
 	</div>
 </Layout>
+
+<style>
+  /* Add bottom margin to ensure proper spacing */
+  .works {
+    margin-bottom: 60px;
+  }
+  
+  /* Ensure last item has margin */
+  .work:last-child {
+    margin-bottom: 40px;
+  }
+</style>

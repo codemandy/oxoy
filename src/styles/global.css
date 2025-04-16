@@ -12,6 +12,7 @@ body {
   line-height: 1.5;
   letter-spacing: -0.01em;
   color: #000;
+  padding-bottom: 80px;
 }
 
 a {
@@ -22,6 +23,7 @@ a {
 .container {
   margin-left: 163px;
   margin-right: auto;
+  margin-bottom: 60px;
   max-width: 1200px;
   padding-left: 0;
   padding-right: 2rem;
@@ -114,6 +116,7 @@ a {
   display: flex;
   flex-direction: column;
   gap: 96px;
+  margin-bottom: 60px;
 }
 
 .work {
@@ -182,6 +185,10 @@ a {
 
 .divider.hidden {
   opacity: 0;
+  display: none;
+}
+
+.divider:last-child {
   display: none;
 }
 
@@ -321,4 +328,9 @@ a {
   font-weight: normal;
   font-style: normal;
   font-display: swap;
-} 
+}
+
+/* Make sure the last work item has proper spacing */
+.work:last-child {
+  margin-bottom: 40px;
+}
