@@ -1,54 +1,59 @@
 ---
 // SecondaryNav.astro - Secondary navigation component
+// Get unique years from projects (hardcoded for example)
+const years = [2025, 2024, 2023, 2022];
+
+// Get all projects (you would replace this with your actual data source)
+// This is just an example structure
+const allProjects = [
+  { id: 'scaling-day', title: 'Scaling.day', year: 2024 },
+  { id: 'adriennes', title: 'Adriennes.site', year: 2024 },
+  { id: 'emmancipattsionsfrugten', title: 'Emancipa(t/ss)ionsfrugten.org', year: 2023 },
+  { id: 'bombinabombast', title: 'Bombinabombast.com', year: 2023 },
+  { id: 'toraschultz', title: 'Toraschultz.com', year: 2022 },
+  { id: 'virtual-rehearsal', title: 'Virtual Rehearsal Space', year: 2022 },
+];
 ---
 
-<div class="secondary-nav-container">
+<div class="container2">
   <div class="secondary-nav-grid">
     <!-- Start secondary nav items at the same grid position as "works" in main nav -->
-    <nav class="secondary-nav">
-      <a href="/scaling-day">
-        <span>Scaling.day</span>
-      </a>
-      <a href="/adriennes">
-        <span>Adriennes.site</span>
-      </a>
-      <a href="/emmancipattsionsfrugten">
-        <span>Emancipa(t/ss)ionsfrugten.org</span>
-      </a>
-      <a href="/bombinabombast">
-        <span>Bombinabombast.com</span>
-      </a>
-      <a href="/toraschultz">
-        <span>Toraschultz.com</span>
-      </a>
-      <a href="/virtual-rehearsal">
-        <span>Virtual Rehearsal Space</span>
-      </a>
+    <nav class="secondary-nav years-nav">
+      {years.map(year => (
+        <a href={`#${year}`} class="year-link" data-year={year}>
+          <span>{year}</span>
+        </a>
+      ))}
     </nav>
+
+    <!-- Projects nav (initially hidden, will be shown when a year is clicked) -->
+    {years.map(year => (
+      <nav class="secondary-nav projects-nav" data-year={year} style="display: none;">
+        {allProjects
+          .filter(project => project.year === year)
+          .map(project => (
+            <a href={`/${project.id}`} data-year={year}>
+              <span>{project.title}</span>
+            </a>
+          ))
+        }
+      </nav>
+    ))}
   </div>
 </div>
 
 <style>
-  .secondary-nav-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-  }
-  
+
   .secondary-nav-grid {
     display: grid;
-    grid-template-columns: 1fr repeat(3, auto) 1fr;
-    padding: 0 2rem;
+    grid-template-columns: 225px repeat(3, auto) 1fr;
+    /* padding: 0 2rem; */
   }
   
   .secondary-nav {
     grid-column: 3;
     display: flex;
     overflow-x: auto;
-    padding: 0 2rem; /* Match MainNav padding */
-    margin: 0;
     justify-content: space-between;
     width: 100%;
     scroll-behavior: smooth; /* Smooth scrolling */
@@ -64,23 +69,21 @@
   .secondary-nav a {
     text-decoration: none;
     color: #333;
-    font-size: 11px;
-    padding: 3px 8px; /* Increased padding for touch targets */
+    padding: 3px 35px; /* Increased padding for touch targets */
     display: inline-block;
     position: relative;
     white-space: nowrap;
     text-align: center;
     flex: 0 0 auto; /* Don't force equal width on mobile */
     border-bottom: 1px solid #eee;
-
   }
 
   .secondary-nav a:last-child {
-  border-right: 1px solid #eee;
-}
-
+    border-right: 1px solid #eee;
+  }
   
-  .secondary-nav a.active::after {
+  .secondary-nav a.active::after,
+  .secondary-nav a.active-year::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -93,6 +96,21 @@
   .secondary-nav a:hover {
     color: #000;
   }
+
+  .back-to-years {
+  display: inline-block;
+  text-decoration: none;
+  color: #333;
+  font-size: 11px;
+  padding: 3px 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border: 1px solid #eee;
+}
+
+.back-to-years:hover {
+  background-color: #f5f5f5;
+}
   
   /* Mobile-specific styles */
   @media (max-width: 767px) {
@@ -130,4 +148,6 @@
       display: none;
     }
   }
+
+
 </style> 

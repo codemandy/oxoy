@@ -46,8 +46,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Simple navigation - show only the clicked work
-  const navLinks = document.querySelectorAll('.secondary-nav a');
+  // Year-based navigation
+  const yearLinks = document.querySelectorAll('.year-link');
+  const projectsNavs = document.querySelectorAll('.projects-nav');
   const works = document.querySelectorAll('.work');
   const dividers = document.querySelectorAll('.divider');
   const logoLink = document.querySelector('.logo a');
@@ -103,47 +104,127 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 500); // Match this to the transition duration in CSS
   }
   
-  // Initially show all works
-  showAllWorks();
+  // Function to show the years navigation
+  function showYearsNav() {
+    // Hide all project navigations
+    projectsNavs.forEach(nav => {
+      nav.style.display = 'none';
+    });
+    
+    // Show the years navigation
+    document.querySelector('.years-nav').style.display = 'flex';
+    
+    // Remove active state from all year links
+    yearLinks.forEach(link => {
+      link.classList.remove('active-year');
+    });
+  }
   
-  // Make logo link show all works
+  // Function to show projects for a specific year
+  function showProjectsForYear(year) {
+    console.log('Showing projects for year:', year);
+    
+    // Hide the years navigation
+    document.querySelector('.years-nav').style.display = 'none';
+    
+    // Show the projects navigation for the selected year
+    const projectsNav = document.querySelector(`.projects-nav[data-year="${year}"]`);
+    if (projectsNav) {
+      projectsNav.style.display = 'flex';
+    }
+    
+    // Filter works by year
+    filterWorksByYear(year);
+    
+    // Add active state to the year link
+    yearLinks.forEach(link => {
+      if (link.getAttribute('data-year') === year.toString()) {
+        link.classList.add('active-year');
+      } else {
+        link.classList.remove('active-year');
+      }
+    });
+  }
+  
+  // Function to filter works by year
+  function filterWorksByYear(year) {
+    console.log('Filtering by year:', year);
+    
+    // Hide all works first with transition
+    hideWorks();
+    
+    setTimeout(() => {
+      // After transition completes, show works matching the year
+      works.forEach(work => {
+        const workYear = work.querySelector('.work-details').textContent.trim();
+        console.log('Checking work year:', workYear, 'against filter year:', year);
+        
+        if (workYear === year.toString()) {
+          work.style.display = 'grid';
+          work.classList.add('hidden');
+          console.log('Year match found!');
+          
+          // Force a reflow
+          document.body.offsetHeight;
+          
+          // Remove hidden class to trigger transition
+          setTimeout(() => {
+            work.classList.remove('hidden');
+          }, 50);
+        }
+      });
+      
+      // Update URL without page reload
+      history.pushState(null, null, `#${year}`);
+    }, 500); // Match this to the transition duration in CSS
+  }
+  
+  // Initially show all works and the years navigation
+  showAllWorks();
+  showYearsNav();
+  
+  // Make logo link show all works and reset to years navigation
   logoLink.addEventListener('click', function(e) {
     e.preventDefault();
     hideWorks();
     setTimeout(() => {
       showAllWorks();
-    }, 500); // Match this to the transition duration in CSS
+      showYearsNav();
+    }, 500);
     history.pushState(null, null, '/');
   });
   
-  // Make "works" link show all works
+  // Make "works" link show all works and reset to years navigation
   if (worksLink) {
     worksLink.addEventListener('click', function(e) {
       e.preventDefault();
       hideWorks();
       setTimeout(() => {
         showAllWorks();
-      }, 500); // Match this to the transition duration in CSS
+        showYearsNav();
+      }, 500);
       history.pushState(null, null, '/works');
     });
   }
   
-  // Add click handlers to secondary navigation links
-  navLinks.forEach(link => {
+  // Add click handlers to year links
+  yearLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const year = this.getAttribute('data-year');
+      showProjectsForYear(year);
+    });
+  });
+  
+  // Add click handlers to project links in the secondary nav
+  const projectLinks = document.querySelectorAll('.projects-nav a');
+  projectLinks.forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
       
       const href = this.getAttribute('href');
-      console.log('Link clicked:', href);
-      
-      // If homepage link, show all works
-      if (href === '#' || href === '/' || href === '') {
-        hideWorks();
-        setTimeout(() => {
-          showAllWorks();
-        }, 500); // Match this to the transition duration in CSS
-        return;
-      }
+      const year = this.getAttribute('data-year');
+      console.log('Project link clicked:', href, 'from year:', year);
       
       // Hide all works first with transition
       hideWorks();
@@ -159,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const workTitle = work.querySelector('.work-title').textContent.toLowerCase();
           console.log('Checking work:', workTitle);
           
-          // More flexible matching
+          // More flexible matching (using your existing logic)
           if (workTitle.includes(linkText.replace('.org', '').replace('.com', '').replace('.site', '').replace('.day', '')) || 
               linkText.includes(workTitle) ||
               href.toLowerCase().includes(workTitle.toLowerCase()) ||
@@ -179,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         });
         
-        // If no match found, try a more lenient approach
+        // If no match found, try a more lenient approach (using your existing logic)
         if (!foundMatch) {
           console.log('No match found, trying more lenient matching');
           works.forEach(work => {
@@ -216,15 +297,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // Check URL on page load
-  const currentPath = window.location.pathname;
-  if (currentPath !== '/' && currentPath !== '' && currentPath !== '/works') {
-    const matchingLink = Array.from(navLinks).find(link => 
-      link.getAttribute('href') === currentPath
-    );
+  // Add a back button to return to years navigation
+  const backToYearsButton = document.createElement('a');
+  backToYearsButton.href = '#';
+  backToYearsButton.className = 'back-to-years';
+  backToYearsButton.innerHTML = '<span>← Back to Years</span>';
+  backToYearsButton.style.display = 'none';
+  document.querySelector('.secondary-nav-container').prepend(backToYearsButton);
+  
+  backToYearsButton.addEventListener('click', function(e) {
+    e.preventDefault();
+    showYearsNav();
+    backToYearsButton.style.display = 'none';
     
-    if (matchingLink) {
-      matchingLink.click();
-    }
+    // Show all works from all years
+    showAllWorks();
+    
+    // Update URL
+    history.pushState(null, null, '/works');
+  });
+  
+  // Check URL hash on page load for year filtering
+  const hashYear = window.location.hash.replace('#', '');
+  if (hashYear && !isNaN(hashYear)) {
+    showProjectsForYear(hashYear);
   }
 }); 

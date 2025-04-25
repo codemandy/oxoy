@@ -16,22 +16,21 @@
 <style>
   .main-nav {
     width: 100%;
+    height: 60px;
   }
   
   .nav-grid {
     display: grid;
     grid-template-columns: 1fr repeat(3, auto) 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
     padding: 0.3rem 0.3rem;
     align-items: center;
-    min-height: 10px;
   }
   
   .logo {
     font-size: 11px;
     letter-spacing: 0.05em;
     grid-column: 1;
-    background-color: rgba(0, 0, 0, 0.03);
     padding: 1.5rem 1.5rem;
   }
   
@@ -42,6 +41,7 @@
     padding: 0.25rem 0.5rem;
     transition: opacity 0.2s ease;
     font-size: 0.9em;
+    
   }
   
   .logo-link:hover {
@@ -49,6 +49,7 @@
   }
   
   .nav-item {
+    
     text-decoration: none;
     color: #333;
     transition: color 0.2s ease;
